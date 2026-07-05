@@ -5,6 +5,7 @@ import com.pizza_jpa.pizza_api.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,10 @@ public class PizzaController {
     @GetMapping
     public ResponseEntity<List<PizzaEntity>> getPizzas() {
         return ResponseEntity.ok(this.pizzaService.getAll());
+    }
+
+    @GetMapping("{idPizza}")
+    public ResponseEntity<PizzaEntity> getPizzaById(@PathVariable int idPizza) {
+        return ResponseEntity.ok(this.pizzaService.getOne(idPizza));
     }
 }
